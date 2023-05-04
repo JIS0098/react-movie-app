@@ -3,7 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./page/Home";
 import Movies from "./page/Movies";
 import MovieDetail from "./page/MovieDetail";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigation from "./components/Navigation";
 //1. 3개의 페이지 필요 홈페에지, movie페이지 , movieDetail페이지
 //2. 홈페이지에서 배너를 볼 수 있다.
 //3. 3가지 섹션의 영화를 볼 수있다. (popular, top rated, upcoming)
@@ -21,6 +22,7 @@ import MovieDetail from "./page/MovieDetail";
 function App() {
   return (
     <div>
+      <Navigation/>
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/movies" element={<Movies/>}></Route>
