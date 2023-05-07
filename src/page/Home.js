@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import { movieAction } from '../redux/actions/movieAction' // 액션을 가져올려면 디스패치 필요하다!!
+import { movieAction } from '../redux/actions/movieAction'
 import { useDispatch, useSelector } from 'react-redux'
 import Banner from '../components/Banner';
 

@@ -13,9 +13,9 @@ const movieSlice = createSlice({
     initialState,
     reducers : {
         getMovies(state, action){
-            state.popularMovies = action.payload.popularMovieApi;
-            state.topRatedMovies = action.payload.topRatedApi;
-            state.upcomingMovies = action.payload.upcomingApi;
+            state.popularMovies = action.payload.popularMovies;
+            state.topRatedMovies = action.payload.topRatedMovies;
+            state.upcomingMovies = action.payload.upcomingMovies;
         }
     }
 })
