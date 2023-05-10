@@ -30,7 +30,10 @@ body{
 }
 .card{
   width: 300px;
-  height: 200px!important;
+  height: 200px!important; 
+  /*강제로 우선순위를 부여하는 기능
+  같은 속성에 여러번 지정하게 되면 가장 마지막에 사용한 순위에 적용 우선 순위를 적용하여 수정을 하였는데도 잘 되지 않을 경우에만 사용!*/
+
 }
 .overlay{
   opacity: 0;
