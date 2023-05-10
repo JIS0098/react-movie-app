@@ -26,14 +26,13 @@ const Home = () => {
 
       {popularMovies.results && <Banner movie={popularMovies.results[0]} />}
       {/* 랜더링전에는 results가 오지않아서 에러가뜸으로 조건부 랜더링을 해줘야한다 popularMovies.results 가있고 popularMovies.results[0]을 줘*/}
-      <div>
-        <h1 className='slide-Title-color'>popularMovies</h1>
-        <MovieSlide movies={popularMovies} /> {/*react-multi-carouse를 이용해 슬라이드 적용*/}
-        <h1 className='slide-Title-color'>topRatedMovies</h1>
-        <MovieSlide movies={topRatedMovies} />
-        <h1 className='slide-Title-color'>upcomingMovies</h1>
-        <MovieSlide movies={upcomingMovies} />
-      </div>
+      <h1 >popularMovies</h1>
+      <MovieSlide  movies={popularMovies} /> {/*react-multi-carouse를 이용해 슬라이드 적용*/}
+      <h1 >topRatedMovies</h1>
+      <MovieSlide movies={topRatedMovies} />
+      <h1 >upcomingMovies</h1>
+      <MovieSlide movies={upcomingMovies} />
+
     </div>
   )
 }

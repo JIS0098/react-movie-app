@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 
 
 
-const MovieSlide = ({ movie }) => {
+const MovieSlide = ({ movies }) => {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -27,14 +27,9 @@ const MovieSlide = ({ movie }) => {
   };
   return (
     <div>
-      <Carousel className="movieSlideBox" responsive={responsive}>
-        <MovieCard  />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+      <Carousel  responsive={responsive}>
+        {movies.results.map((item)=>(<MovieCard item={item}/>))}
       </Carousel>
-      ;
     </div>
   );
 };
