@@ -1,28 +1,27 @@
-import {createSlice} from "@reduxjs/toolkit";
-
-
 let initialState = {
   popularMovies: {},
   topRatedMovies: {},
   upcomingMovies: {},
-  loading:true
+  loading: true,
 };
 
+function movieReducer(state = initialState, action) {
+  let { type, payload } = action;
+  switch (type) {
+    case "BEFORE/GET/MOVIES":
+        return {...state,loading:true}
+    case "GET/MOVIES":
+      return {
+        ...state,
+        popularMovies: payload.popularMovies,
+        topRatedMovies: payload.topRatedMovies,
+        upcomingMovies: payload.upcomingMovies,
+        loading:false
+      };
+    case "GET/MOVIES/ERROR":
+        return {...state,loading:true}
+      default: return {...state}
+  } 
+}
 
-const movieSlice = createSlice({
-    name: "movie",
-    initialState,
-    reducers : {
-        
-        getMovies(state, action){
-            state.popularMovies = action.payload.popularMovies;
-            state.topRatedMovies = action.payload.topRatedMovies;
-            state.upcomingMovies = action.payload.upcomingMovies;
-            state.loading = false
-        }
-    }
-    
-})
-
-export default movieSlice.reducer;
-export const movieActions = movieSlice.actions;
+export default movieReducer;

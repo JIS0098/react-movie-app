@@ -29,4 +29,10 @@
 }
 
 
+.card{
+  height: 200px;
+}
 /*보통의 레이어 값은 0이고 z-index:레이어값 을정해주면 된다 보통1만해도 레이어가 상위에있다.*/
+.slide-Title-color{
+  color: white;
+}
