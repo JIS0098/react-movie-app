@@ -11,9 +11,9 @@ const Home = () => {
   console.log("인기",popularMovies);
   useEffect(()=>{
     dispatch(movieAction.getMovies());
-    dispatch(ClipLoader.loading={loading});
+
   },[])
-  if(loading) return <ClipLoader color="#ffff" loading={loading} cssOverride={override} size={150}/>
+  
   //로딩이 true면 로딩스피너를 보여주고 =>데이터 도착전
   //로딩이 false면 데이터를 보여주고 =>데이터 도착후 or 에러났을때
   return (
