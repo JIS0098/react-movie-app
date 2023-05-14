@@ -3,19 +3,23 @@ import {
   Navbar,
   Container,
   Nav,
-  NavDropdown,
   Form,
   Button,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react'
 
 const Navigation = () => {
+  const navigate = useNavigate();
+  const goToHome=()=>{
+    navigate("/")
+  }
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">
-            <img
+            <img onClick={goToHome}
               width={100}
               src="https://blog.kakaocdn.net/dn/c4jzIT/btrghQIPMkh/sByblE0p50HHtMiEDdn8k1/img.png"
             />
