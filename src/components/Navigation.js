@@ -7,7 +7,6 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from 'react'
 
 const Navigation = () => {
   const navigate = useNavigate();
@@ -15,13 +14,13 @@ const Navigation = () => {
     navigate("/")
   }
   return (
-    <div>
-      <Navbar bg="dark" variant="dark" expand="lg">
+    <div >
+      <Navbar style={{backgroundColor:"#141414"}} variant="dark" expand="lg">
         <Container fluid>
           <Navbar.Brand href="#">
             <img onClick={goToHome}
-              width={100}
-              src="https://blog.kakaocdn.net/dn/c4jzIT/btrghQIPMkh/sByblE0p50HHtMiEDdn8k1/img.png"
+              width={150}
+              src="https://noona-netflix.netlify.app/logo.png"
             />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

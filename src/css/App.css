@@ -1,3 +1,5 @@
+
+
 body{
   background-color: black !important;
   color: white !important;
@@ -48,8 +50,3 @@ body{
 }
 /*보통의 레이어 값은 0이고 z-index:레이어값 을정해주면 된다 보통1만해도 레이어가 상위에있다.*/
 
-.movieDetail-banner{
-    background-position: 50%;
-    background-size: cover;
-    padding: 120px 0;
-}

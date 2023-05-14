@@ -1,5 +1,5 @@
 import api from "../api";
-import { ClipLoader } from "react-spinners/ClipLoader";
+
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;

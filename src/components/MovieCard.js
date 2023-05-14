@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 const MovieCard = ({ item }) => {
     const {genreList}=useSelector((state)=>state.movie);
     const navigate=useNavigate();
-    const goToDetail=()=>{
-        navigate(`/movies/${item.id}`)
+    const goToDetail=({ item })=>{
+        navigate(`/movies/${item.id}`,{state:{item}})
         
     }
 
-    return (<div onClick={goToDetail} className='card' style={{
+    return (<div onClick={()=> goToDetail({ item })} className='card' style={{
         backgroundImage: "url(" + `https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/${item.poster_path}` + ")"
     }}>
         <div className='overlay'>

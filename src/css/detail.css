@@ -1,0 +1,79 @@
+.detail-banner {
+  background-position: 50%;
+  background-size: cover;
+  padding: 120px 0;
+}
+
+.banner-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.banner-area h1 {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+
+.banner-text {
+  padding: 24px 42px;
+  background: #fff;
+  line-height: 1;
+  z-index: 1;
+}
+
+li{
+  list-style:none;
+}
+
+.banner-text li {
+  display: inline-block;
+  position: relative;
+  padding: 0 13px;
+}
+
+.banner-text li h1 {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+.banner-text li a {
+  color: #525470;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.banner-text li a:hover {
+  color: white;
+}
+
+.banner-text li span {
+  color: #abadc5;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  letter-spacing: 2px;
+}
+
+.banner-text li span:before {
+  background: #c4c5d5;
+  display: inline-block;
+  left: -4px;
+  padding-bottom: 0;
+  position: absolute;
+  top: -2px;
+  height: 17px;
+  width: 2px;
+  content: "";
+}
+
+.banner-text li * {
+  font-size: 1em;
+}
+
