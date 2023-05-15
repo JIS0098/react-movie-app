@@ -9,7 +9,7 @@ const MovieCard = ({ item }) => {
     const {genreList}=useSelector((state)=>state.movie);
     const navigate=useNavigate();
     const goToDetail=({ item })=>{
-        navigate(`/movies/${item.id}`,{state:{item}})
+        navigate(`/movies/${item.id}`)
         
     }
 
@@ -19,7 +19,7 @@ const MovieCard = ({ item }) => {
         <div className='overlay'>
             <h1>{item.title}</h1>
             <div>
-                {item.genre_ids.map((id)=>(<Badge bg='danger'>{genreList.find((item)=>item.id===id).name}</Badge>))}
+                {item.genre_ids.map((id)=>(<Badge key={id} bg='danger'>{genreList.find((item)=>item.id===id).name}</Badge>))}
             </div>
             <div>
                 <span>{item.vote_average}</span>
