@@ -13,6 +13,7 @@ const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [reviews ,setReviews] = useState([]);
+  const [but,satBut]=useState(true);
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let detailData = detailApi.data;
@@ -22,8 +23,7 @@ const MovieDetail = () => {
     setReviews(reviews)
   };
 
-  console.log(movie.genres)
-  console.log(reviews)
+
   useEffect(() => {
     getMoviesDetail();
   }, []);
@@ -57,12 +57,12 @@ const MovieDetail = () => {
         <Container className="container">
           <Row className="screen-top">
             <Col className="movie-left-page" lg={6}>
-              <img src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`} />
+              <img src={`https://www.themoviedb.org/t/p/original/${movie?.poster_path}`} />
             </Col>
             <Col className="movie-right-page" lg={6}>
               <div className="movie-area" >
                 <ul className="movie-genres">
-                  {movie.genres && movie.genres.map((item) => (<li><Badge className="badge" bg="danger"><div>{item.name}</div></Badge></li>))}
+                  {movie.genres && movie.genres.map((item) => (<li><Badge key={item} className="badge" bg="danger"><div>{item.name}</div></Badge></li>))}
                 </ul>
                 <h1>{movie?.title}</h1>
                 <div className="movie-info">
@@ -111,13 +111,14 @@ const MovieDetail = () => {
                 <button>REVIEWS (5)</button>
                 <button>RELATED MOVIES (20)</button>
               </div>
-              <div className="review-list">
+              {/*<div className="review-list">
                 <ul> 
-                {/*reviews && reviews.results.find((review)=>(<li className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))*/}
+                {reviews.results && reviews.results.map((review)=>(<li key={review}className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))}
                 </ul>
-               
-              </div>
+      </div>*/}
+              <div className="related-list">
 
+              </div>
             </Col>
           </Row>
         </Container>
