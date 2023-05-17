@@ -113,8 +113,9 @@ const MovieDetail = () => {
               </div>
               <div className="review-list">
                 <ul> 
-                {/*reviews && reviews.results.map((review)=>(<li className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))*/}
+                {/*reviews && reviews.results.find((review)=>(<li className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))*/}
                 </ul>
+               
               </div>
 
             </Col>
