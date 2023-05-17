@@ -5,6 +5,7 @@ import "../css/detail.css";
 import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
 
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 const MovieDetail = () => {
@@ -13,20 +14,26 @@ const MovieDetail = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [reviews ,setReviews] = useState([]);
+  const [related, setRelated] =useState([]);
   const [but,satBut]=useState(true);
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
-    let detailData = detailApi.data;
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
-    let reviews = reviewsApi.data
+    let relatedApi = await api.get(`movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`)
+    let detailData = detailApi.data;
+    let reviews = reviewsApi.data;
+    let related = relatedApi.data;
     setMovie(detailData)
     setReviews(reviews)
+    setRelated(related)
   };
 
 
   useEffect(() => {
     getMoviesDetail();
   }, []);
+
+  console.log("추천",related)
 
   return (
     <div className="detail-area">
@@ -62,7 +69,7 @@ const MovieDetail = () => {
             <Col className="movie-right-page" lg={6}>
               <div className="movie-area" >
                 <ul className="movie-genres">
-                  {movie.genres && movie.genres.map((item) => (<li><Badge key={item} className="badge" bg="danger"><div>{item.name}</div></Badge></li>))}
+                  {movie.genres && movie.genres.map((genre) => (<li><Badge key={genre} className="badge" bg="danger"><div>{genre.name}</div></Badge></li>))}
                 </ul>
                 <h1>{movie?.title}</h1>
                 <div className="movie-info">
@@ -116,8 +123,8 @@ const MovieDetail = () => {
                 {reviews.results && reviews.results.map((review)=>(<li key={review}className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))}
                 </ul>
       </div>*/}
-              <div className="related-list">
-
+              <div className="related-movie">
+              
               </div>
             </Col>
           </Row>
