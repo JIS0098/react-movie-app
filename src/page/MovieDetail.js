@@ -115,7 +115,6 @@ const MovieDetail = () => {
                 <ul> 
                 {/*reviews && reviews.results.map((review)=>(<li className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))*/}
                 </ul>
-               
               </div>
 
             </Col>
