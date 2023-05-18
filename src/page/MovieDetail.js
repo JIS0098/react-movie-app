@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "../css/detail.css";
 import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
+import MovieRelatedCard from "../components/MovieRelatedCard";
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -124,7 +125,7 @@ const MovieDetail = () => {
                 </ul>
       </div>*/}
               <div className="related-movie">
-              
+              {related.results && related.results.map((movie)=>(<MovieRelatedCard key={movie} movie={movie}/>))}
               </div>
             </Col>
           </Row>
