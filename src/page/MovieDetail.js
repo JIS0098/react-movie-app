@@ -114,22 +114,18 @@ const MovieDetail = () => {
               </div>
             </Col>
           </Row>
-          <Row className="screen-bottom">
-            <Col lg={12}>
-              <ul className="review-nav">
-                <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
-                <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
-              </ul>
-            </Col>
-              <Col lg={12}>
-              {but ? 
-              <Review reviews={reviews}/> : 
+          <div className="screen-bottom">
+            <ul className="review-nav">
+              <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
+              <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
+            </ul>
+            {but ?
+              <Review reviews={reviews} /> :
               <div className='related-list'>
                 {related.results && related.results.map((related) => (<MovieRelatedCard key={related} related={related} />))}
               </div>}
-              </Col>
+          </div>
 
-          </Row>
         </Container>
       </section>
 
