@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
- margin: 0;
+  margin: 0;
 }
 
 .detail-banner {
@@ -71,6 +71,7 @@ li {
   letter-spacing: 2px;
   font-weight: 500;
 }
+
 .banner-text li span {
   color: #abadc5;
   font-size: 14px;
@@ -78,7 +79,7 @@ li {
   text-transform: uppercase;
   transition: all 0.3s ease 0s;
   letter-spacing: 2px;
-  
+
 }
 
 .banner-text li span:before {
@@ -103,7 +104,6 @@ li {
   align-items: center;
   width: 1140px;
   flex-wrap: wrap;
-  padding: 100px 0;
 }
 
 .movie-page {
@@ -216,13 +216,11 @@ li {
   font-size: 15px;
 }
 
-.screen-top {
-  margin-bottom: 50px;
+.screen-top{
+  margin-top: 100px!important;;
 }
-
-.review-nav{
-  display: flex;
-  justify-content: flex-start;
+.screen-bottom{
+  margin-top: 50px !important;
 }
 .review-nav button {
   font-size: 14px;
@@ -255,10 +253,10 @@ li {
   padding: 25px 50px 70px 50px;
 }
 
-.review{
+.review {
   padding: 25px 10px;
- }
- 
+}
+
 
 .review:not(:last-child) {
   border-bottom: 1px solid white;
@@ -274,22 +272,33 @@ li {
   margin: 0;
 }
 
-.related-list{ 
-  margin-top: 25px; 
+.related-list {
+  margin-top: 25px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.related-card{
+
+.related-card {
+  background-position: center;
   width: 40%;
-  margin-top: 20px;
+  height: 166px;
+  background-size: cover;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
 
-.review-nav{
+.review-nav {
   display: flex;
-    flex-wrap: wrap;
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style: none;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+
+.related-card:hover .overlay{
+  opacity: 1;
+  
 }

@@ -45,8 +45,7 @@ const MovieDetail = () => {
         style={{
           backgroundImage:
             'url("https://images.hdqwalls.com/download/polygonal-abstract-red-dark-background-eo-1280x1024.jpg")',
-        }}
-      >
+        }}>
         <Container>
           <Row>
             <Col className="banner-area" lg={12}>
@@ -113,19 +112,18 @@ const MovieDetail = () => {
                 </div>
               </div>
             </Col>
+            <Col lg={12} className="screen-bottom" >
+              <ul className="review-nav">
+                <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
+                <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
+              </ul>
+              {but ?
+                <Review reviews={reviews} /> :
+                <div className='related-list'>
+                  {related.results && related.results.map((related) => (<MovieRelatedCard key={related} related={related} />))}
+                </div>}
+            </Col>
           </Row>
-          <div className="screen-bottom">
-            <ul className="review-nav">
-              <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
-              <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
-            </ul>
-            {but ?
-              <Review reviews={reviews} /> :
-              <div className='related-list'>
-                {related.results && related.results.map((related) => (<MovieRelatedCard key={related} related={related} />))}
-              </div>}
-          </div>
-
         </Container>
       </section>
 
