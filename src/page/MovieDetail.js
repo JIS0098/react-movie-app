@@ -5,6 +5,8 @@ import "../css/detail.css";
 import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
 import MovieRelatedCard from "../components/MovieRelatedCard";
+import Reviews from "../components/Reviews";
+import RelatedMovie from "../components/RelatedMovie";
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -14,9 +16,9 @@ const MovieDetail = () => {
   // 장르 
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
-  const [reviews ,setReviews] = useState([]);
+  const [reviews ,setReviews] = useState(true);
   const [related, setRelated] =useState([]);
-  const [but,satBut]=useState(true);
+  const [but,setBut]=useState(true);
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
@@ -116,17 +118,14 @@ const MovieDetail = () => {
           <Row className="screen-bottom">
             <Col lg={12}>
               <div className="review-nav">
-                <button>REVIEWS (5)</button>
-                <button>RELATED MOVIES (20)</button>
+                <button onClick={()=>setBut(true)}>REVIEWS (5)</button>
+                <button onClick={()=>setBut(false)}>RELATED MOVIES (20)</button>
               </div>
-              {/*<div className="review-list">
-                <ul> 
-                {reviews.results && reviews.results.map((review)=>(<li key={review}className="review"><h4>{review?.author}</h4><p>{review?.content}</p></li>))}
-                </ul>
-      </div>*/}
-              <div className="related-movie">
-              {related.results && related.results.map((movie)=>(<MovieRelatedCard key={movie} movie={movie}/>))}
+              <div>
+                { but? <Reviews reviews={reviews}/>:<RelatedMovie related ={ related }/>}
               </div>
+
+             
             </Col>
           </Row>
         </Container>
