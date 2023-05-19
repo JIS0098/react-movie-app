@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  margin: 0;
+ margin: 0;
 }
 
 .detail-banner {
@@ -247,12 +247,19 @@ li {
 
 .review-list {
   margin-top: 25px;
+  border: 3px solid white;
+  padding: 25px 50px 70px 50px;
 }
 
-.review-list li {
+.review{
   padding: 25px 10px;
+ }
+ 
+
+.review:not(:last-child) {
   border-bottom: 1px solid white;
 }
+
 
 .review h4 {
   font-size: 17px;
@@ -263,13 +270,22 @@ li {
   margin: 0;
 }
 
-.related-movie {
+.related-list{ 
+  margin-top: 25px; 
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
-.relate-card {
+.related-card{
   width: 40%;
-  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.review-nav{
+  display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
 }

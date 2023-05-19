@@ -5,8 +5,8 @@ import "../css/detail.css";
 import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
 import MovieRelatedCard from "../components/MovieRelatedCard";
-import Reviews from "../components/Reviews";
-import RelatedMovie from "../components/RelatedMovie";
+import Review from "../components/Review";
+
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -16,9 +16,9 @@ const MovieDetail = () => {
   // 장르 
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
-  const [reviews ,setReviews] = useState(true);
-  const [related, setRelated] =useState([]);
-  const [but,setBut]=useState(true);
+  const [reviews, setReviews] = useState(true);
+  const [related, setRelated] = useState([]);
+  const [but, satBut] = useState(true);
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
@@ -36,7 +36,7 @@ const MovieDetail = () => {
     getMoviesDetail();
   }, []);
 
-  console.log("추천",related)
+  console.log("추천", related)
 
   return (
     <div className="detail-area">
@@ -104,7 +104,6 @@ const MovieDetail = () => {
                       </ul>
                     </div>
                   </div>
-
                 </div>
                 <div className="movie-warning">
                   Watch Trailer
@@ -117,16 +116,19 @@ const MovieDetail = () => {
           </Row>
           <Row className="screen-bottom">
             <Col lg={12}>
-              <div className="review-nav">
-                <button onClick={()=>setBut(true)}>REVIEWS (5)</button>
-                <button onClick={()=>setBut(false)}>RELATED MOVIES (20)</button>
-              </div>
-              <div>
-                { but? <Reviews reviews={reviews}/>:<RelatedMovie related ={ related }/>}
-              </div>
-
-             
+              <ul className="review-nav">
+                <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
+                <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
+              </ul>
             </Col>
+              <Col lg={12}>
+              {but ? 
+              <Review reviews={reviews}/> : 
+              <div className='related-list'>
+                {related.results && related.results.map((related) => (<MovieRelatedCard key={related} related={related} />))}
+              </div>}
+              </Col>
+
           </Row>
         </Container>
       </section>
