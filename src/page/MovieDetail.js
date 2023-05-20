@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import "../css/detail.css";
+import "../css/trailer.css";
 import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
 import MovieRelatedCard from "../components/MovieRelatedCard";
@@ -21,7 +22,7 @@ const MovieDetail = () => {
   const [reviews, setReviews] = useState(true);
   const [related, setRelated] = useState([]);
   const [but, satBut] = useState(true);
-  const [videKey, setVideKey] =useState("");
+  const [videoKey, setVideoKey] =useState("");
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
@@ -30,11 +31,11 @@ const MovieDetail = () => {
     let detailData = detailApi.data;
     let reviews = reviewsApi.data;
     let related = relatedApi.data;
-    let videKey = videoApi.data.results[0].key;
+    let videoKey = videoApi.data.results[0].key;
     setMovie(detailData)
     setReviews(reviews)
     setRelated(related)
-    setVideKey(videKey)
+    setVideoKey(videoKey)
   };
 
 
@@ -44,7 +45,7 @@ const MovieDetail = () => {
 
   console.log("추천", related)
   console.log("리뷰", reviews)
-  console.log("예고",videKey)
+  console.log("예고",videoKey)
 
   return (
     <div className="detail-area">
@@ -113,7 +114,7 @@ const MovieDetail = () => {
                   </div>
                 </div>
                 <div className="movie-warning">
-                {<Trailer videKey={videKey}/>}
+                {<Trailer videoKey={videoKey}/>}
                 </div>
                 <div className="movie-like">
                   ♥
