@@ -6,7 +6,9 @@ import Badge from "react-bootstrap/Badge";
 import api from "../redux/api";
 import MovieRelatedCard from "../components/MovieRelatedCard";
 import Review from "../components/Review";
-
+import Trailer from "../components/Trailer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilm } from "@fortawesome/free-solid-svg-icons";
 
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -19,16 +21,20 @@ const MovieDetail = () => {
   const [reviews, setReviews] = useState(true);
   const [related, setRelated] = useState([]);
   const [but, satBut] = useState(true);
+  const [videKey, setVideKey] =useState("");
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
-    let relatedApi = await api.get(`movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`)
+    let relatedApi = await api.get(`movie/${id}/recommendations?api_key=${API_KEY}&language=en-US`);
+    let videoApi = await api.get(`movie/${id}/videos?api_key=${API_KEY}`)
     let detailData = detailApi.data;
     let reviews = reviewsApi.data;
     let related = relatedApi.data;
+    let videKey = videoApi.data.results[0].key;
     setMovie(detailData)
     setReviews(reviews)
     setRelated(related)
+    setVideKey(videKey)
   };
 
 
@@ -37,6 +43,8 @@ const MovieDetail = () => {
   }, []);
 
   console.log("추천", related)
+  console.log("리뷰", reviews)
+  console.log("예고",videKey)
 
   return (
     <div className="detail-area">
@@ -105,7 +113,7 @@ const MovieDetail = () => {
                   </div>
                 </div>
                 <div className="movie-warning">
-                  Watch Trailer
+                {<Trailer videKey={videKey}/>}
                 </div>
                 <div className="movie-like">
                   ♥
@@ -114,8 +122,8 @@ const MovieDetail = () => {
             </Col>
             <Col lg={12} className="screen-bottom" >
               <ul className="review-nav">
-                <li><button onClick={() => satBut(true)}>REVIEWS (5)</button></li>
-                <li><button onClick={() => satBut(false)}>RELATED MOVIES (20)</button></li>
+                <li><button onClick={() => satBut(true)}>REVIEWS ({reviews?.total_results})</button></li>
+                <li><button onClick={() => satBut(false)}>RELATED MOVIES (21)</button></li>
               </ul>
               {but ?
                 <Review reviews={reviews} /> :
