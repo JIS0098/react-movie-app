@@ -4,11 +4,11 @@ import { Badge } from 'react-bootstrap';
 const MovieRelatedCard = ({ related }) => {
   const { genreList } = useSelector((state) => state.movie)
   return (
-    <div className='related-card' style={{ backgroundImage: "url(" + `https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/${related?.backdrop_path}` + ")" }}>
+    <div className='related-card' style={{ backgroundImage: "url(" + `https://image.tmdb.org/t/p/original///${related?.backdrop_path}` + ")" }}>
       <div className='overlay'>
         <h1>{related?.title}</h1>
         <div>
-      
+        { related.genre_ids.map((id)=>(<Badge key={id} bg='danger'>{genreList.find((item)=>item.id===id).name}</Badge>))}
         </div>
         <div>
           <span>{related?.vote_average}</span>

@@ -1,0 +1,36 @@
+
+.collection-card-list{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.collection-card{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    border-radius: 10px;
+    background-size: cover;
+    width: 350px ;
+    height: 550px ;
+    /*강제로 우선순위를 부여하는 기능
+    같은 속성에 여러번 지정하게 되면 가장 마지막에 사용한 순위에 적용 우선 순위를 적용하여 수정을 하였는데도 잘 되지 않을 경우에만 사용!*/
+  }
+
+
+
+  .collection-card::before{
+    position: absolute;
+    left: 0;
+    width: 85%;
+    height: 100%;
+    content: "";
+    background: linear-gradient(to right, black ,transparent);
+  }
+
+  .card-info{
+    width: 40%;
+    margin-left: 30px;
+    z-index: 1; 
+  }
