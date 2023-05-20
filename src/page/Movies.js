@@ -33,7 +33,7 @@ const Movies = () => {
           <Row>
             <Col lg={12}>
           <div  className='collection-card-list'>{popularMovies.results && popularMovies.results.map((movie)=>(<MoviesCollectionCard movie={movie}/>))}</div>
-          {/* <div><Pagination movie={popularMovies} /></div> */}
+          <div><Pagination movie={popularMovies} /></div>
             </Col>
           </Row>
         </Col>
