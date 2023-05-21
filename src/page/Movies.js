@@ -7,13 +7,17 @@ import { Container, Row, Col } from "react-bootstrap";
 import MoviesCollectionCard from '../components/MoviesCollectionCard';
 import "../css/movie.css";
 import Pagination from '../components/Pagination';
-
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const { popularMovies,loading } = useSelector((state) => state.movie);
   const dispatch = useDispatch();
   console.log("인기", popularMovies);
+  const [query, setQuery] = useSearchParams("");
+  let searchQuery=query.get("q") ||"";
+
   useEffect(() => {
+    console.log(searchQuery)
     dispatch(movieAction.getMovies());
   }, [])
 
