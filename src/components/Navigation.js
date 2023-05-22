@@ -25,7 +25,7 @@ const Navigation = () => {
 const  goToSearch=(e)=>{
   e.preventDefault();
   navigate(`/movies?q=${keyword}`)
-
+  setKeyword("")
 }
 
   return (

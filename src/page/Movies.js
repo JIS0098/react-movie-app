@@ -18,15 +18,22 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const Movies = () => {
   const { popularMovies, loading, } = useSelector((state) => state.movie);
   const [query, setQuery]= useSearchParams("");
+  const [searchMovie , setSearchMovie]= useState({});
   const dispatch = useDispatch();
   console.log("인기", popularMovies);
-
+  let keyword = query.get("q")
+  const getSearchMovie=async()=>{
+    let searchMovieApi= await api.get(`/search/movie?api_key=${API_KEY}&language=en-US&page=1&include_adult=false&query=${keyword}`)
+    let searchMovie=searchMovieApi.data
+    setSearchMovie(searchMovie)
+    console.log("검색데이터",searchMovie)
+  }
 
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
-    console.log("검색",query.get("q"))
-  }, [])
+    getSearchMovie();
+  }, [query])
 
   if (loading) {
     return <ClipLoader color="#ffff" loading={loading} size={100} />;
@@ -44,7 +51,10 @@ const Movies = () => {
         <Col lg={8}>
           <Row>
             <Col lg={12}>
-              <div className='collection-card-list'>{popularMovies.results && popularMovies.results.map((movie) => (<MoviesCollectionCard movie={movie} />))
+              <div className='collection-card-list'>{
+              query===""?
+              popularMovies.results && popularMovies.results.map((movie) => (<MoviesCollectionCard movie={movie} />)):
+              searchMovie.results && searchMovie.results.map((movie) => (<MoviesCollectionCard movie={movie} />))
               }
               </div>
               <div>

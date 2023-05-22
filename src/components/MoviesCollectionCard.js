@@ -15,7 +15,7 @@ const MoviesCollectionCard = ({ movie }) => {
                 </div>
                 <div>
                     <span>{movie?.vote_average}</span>
-                    <span>{movie ? "청불" : "Under 18"}</span>
+                    <span>{movie.adult ? "청불" : "Under 18"}</span>
                 </div>
             </div> 
         </div>
