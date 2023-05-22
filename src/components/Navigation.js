@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import {
   Navbar,
   Container,
@@ -13,12 +13,21 @@ const Navigation = () => {
   const goToHome=()=>{
     navigate("/")
   }
-  const serach=(e)=>{
+
+  const [keyword,setKeyword]= useState("");
+  let search = (e) =>{
     if(e.key==="Enter"){
-      let keyword=e.target.value
-      navigate(`/?q=${keyword}`)
+      let word = e.target.value
+      setKeyword(word)
     }
   }
+
+const  goToSearch=(e)=>{
+  e.preventDefault();
+  navigate(`/movies?q=${keyword}`)
+
+}
+
   return (
     <div >
       <Navbar style={{backgroundColor:"#141414"}} variant="dark" expand="lg">
@@ -38,14 +47,14 @@ const Navigation = () => {
               <Link className="nav-item" to="/">Home</Link>
               <Link className="nav-item" to="/movies">Movies</Link>
             </Nav>
-            <Form className="d-flex">
-              <Form.Control onChange={(e)=>serach(e)}
+            <Form onSubmit={(e)=>goToSearch(e)} className="d-flex" >
+              <Form.Control onKeyDown={(e)=>search(e)}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-danger">Search</Button>
+              <Button  variant="outline-danger">Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

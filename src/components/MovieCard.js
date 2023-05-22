@@ -9,7 +9,7 @@ const MovieCard = ({ item }) => {
     const {genreList}=useSelector((state)=>state.movie);
     const navigate=useNavigate();
     const goToDetail=({ item })=>{
-        navigate(`/movies/${item.id}`)
+        navigate(`/moviesDetail/${item.id}`)
         
     }
 

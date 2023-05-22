@@ -26,7 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}></Route>
         <Route path="/movies" element={<Movies/>}></Route>
-        <Route path="/movies/:id" element={<MovieDetail/>}></Route> {/*하나의 영화만 들고와야하기에 :id추가*/}
+        <Route path="/moviesDetail/:id" element={<MovieDetail/>}></Route> {/*하나의 영화만 들고와야하기에 :id추가*/}
       </Routes>
     </div>
   );
