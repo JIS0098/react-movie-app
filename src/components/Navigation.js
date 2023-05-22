@@ -13,6 +13,12 @@ const Navigation = () => {
   const goToHome=()=>{
     navigate("/")
   }
+  const serach=(e)=>{
+    if(e.key==="Enter"){
+      let keyword=e.target.value
+      navigate(`/?q=${keyword}`)
+    }
+  }
   return (
     <div >
       <Navbar style={{backgroundColor:"#141414"}} variant="dark" expand="lg">
@@ -33,7 +39,7 @@ const Navigation = () => {
               <Link className="nav-item" to="/movies">Movies</Link>
             </Nav>
             <Form className="d-flex">
-              <Form.Control
+              <Form.Control onChange={(e)=>serach(e)}
                 type="search"
                 placeholder="Search"
                 className="me-2"
