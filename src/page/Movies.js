@@ -52,7 +52,7 @@ const Movies = () => {
           <Row>
             <Col lg={12}>
               <div className='collection-card-list'>{
-              query===""?
+              keyword===null?
               popularMovies.results && popularMovies.results.map((movie) => (<MoviesCollectionCard movie={movie} />)):
               searchMovie.results && searchMovie.results.map((movie) => (<MoviesCollectionCard movie={movie} />))
               }
