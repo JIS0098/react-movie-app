@@ -4,6 +4,7 @@ let initialState = {
   upcomingMovies: {},
   genreList:{},
   loading: true,
+  keyword:""
 };
 
 function movieReducer(state = initialState, action) {
@@ -22,9 +23,12 @@ function movieReducer(state = initialState, action) {
       };
     case "GET/MOVIES/ERROR":
         return {...state,loading:true}
+    case "SAVE/QUERY":
+      return{...state,keyword:payload.query}
       default: return {...state}
 
   } 
 }
+
 
 export default movieReducer;

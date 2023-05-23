@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 import {
   Navbar,
   Container,
@@ -6,27 +6,29 @@ import {
   Form,
   Button,
 } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
+import { movieAction } from "../redux/actions/movieAction";
 const Navigation = () => {
+  const [query,setQuery]= useState("");
+ const {keyword}=useSelector(state=>state.movie)
   const navigate = useNavigate();
+  const dispatch=useDispatch();
+
   const goToHome=()=>{
     navigate("/")
   }
 
-  const [keyword,setKeyword]= useState("");
-  let search = (e) =>{
-    if(e.key==="Enter"){
-      let word = e.target.value
-      setKeyword(word)
-    }
+ const searchEnter = (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+     navigate(`/movies?q=${keyword}`)
   }
+};
 
-const  goToSearch=(e)=>{
-  e.preventDefault();
-  navigate(`/movies?q=${keyword}`)
-  setKeyword("")
-}
+useEffect(()=>{
+  dispatch(movieAction.getQuery(query))
+},[query])
 
   return (
     <div >
@@ -47,14 +49,15 @@ const  goToSearch=(e)=>{
               <Link className="nav-item" to="/">Home</Link>
               <Link className="nav-item" to="/movies">Movies</Link>
             </Nav>
-            <Form onSubmit={(e)=>goToSearch(e)} className="d-flex" >
-              <Form.Control onKeyDown={(e)=>search(e)}
+            <Form onKeyDown={searchEnter} className="d-flex" >
+              <Form.Control onChange={(e)=>setQuery(e.target.value)}
                 type="search"
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                
               />
-              <Button  variant="outline-danger">Search</Button>
+              <Button variant="outline-danger"><Link to={`/movies?q=${keyword}`}>Search</Link></Button>
             </Form>
           </Navbar.Collapse>
         </Container>

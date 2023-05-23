@@ -26,7 +26,12 @@ function getMovies() {
        
     }
 }
+function getQuery(query){
+    return(dispatch) =>{
+        dispatch({type:"SAVE/QUERY",payload:{query}})
+    }
+}
 
 export const movieAction = {
-    getMovies
+    getMovies,getQuery
 }
