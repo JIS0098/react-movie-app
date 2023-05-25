@@ -23,6 +23,7 @@ const MovieDetail = () => {
   const [related, setRelated] = useState([]);
   const [but, satBut] = useState(true);
   const [videoKey, setVideoKey] =useState("");
+  
   const getMoviesDetail = async () => {
     let detailApi = await api.get(`/movie/${id}?api_key=${API_KEY}&language=en-US`);
     let reviewsApi = await api.get(`/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`);
