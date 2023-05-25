@@ -22,6 +22,7 @@ const Movies = () => {
   const { popularMovies, loading, } = useSelector((state) => state.movie);
   const [query, setQuery] = useSearchParams("");
   const [searchMovie, setSearchMovie] = useState({});
+  const [list, setList] = useState([])
   const dispatch = useDispatch();
   console.log("인기", popularMovies);
   let keyword = query.get("q")
@@ -32,20 +33,11 @@ const Movies = () => {
     setSearchMovie(searchMovie)
     console.log("검색데이터", searchMovie)
   }
-  let list={}
-  const judgment=(category)=>{
-    if(category==="인기높은순"){
-      list=popularMovies.results
-      
-    }else if(category==="인기낮은순"){
-      list=popularMovies.results.sort((a,b)=>(a.popularity-b.popularity))
-      console.log('확인',list)
-    }
-  }
 
   useEffect(() => {
     dispatch(movieAction.getMovies());
     getSearchMovie();
+    setList(popularMovies.results);
   }, [query])
 
   if (loading) {
@@ -60,16 +52,15 @@ const Movies = () => {
             <DropdownButton id="dropdown-item-button" title="Sort">
               <Dropdown.ItemText>Sort Results By</Dropdown.ItemText>
               <DropdownButton id="dropdown-item-button" title="Sort By">
-                <Dropdown.Item onClick={judgment()} as="button">None</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("인기높은순")} as="button">Popularity(Desc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("인기낮은순")} as="button">Popularity(Asc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("출시일빠른순")} as="button">Release Day(Desc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("출시일느린순")} as="button">Release Day(Asc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("투표많은순")} as="button">Vote(Desc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("투표적은순")} as="button">Vote(Asc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("수익많은순")} as="button">Revenue(Desc)</Dropdown.Item>
-                <Dropdown.Item onClick={()=>judgment("수익적은순")} as="button">Revenue(Asc)</Dropdown.Item>
-
+                <Dropdown.Item as="button">None</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (b.popularity - a.popularity)); setList(copy); }} as="button">Popularity(Desc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (a.popularity - b.popularity)); setList(copy); }} as="button">Popularity(Asc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (b.release_date - a.release_date)); setList(copy); }} as="button">Release Day(Desc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (a.release_date - b.release_date)); setList(copy); }} as="button">Release Day(Asc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (b.vote_average - a.vote_average)); setList(copy); }} as="button">Vote(Desc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (a.vote_average - b.vote_average)); setList(copy); }} as="button">Vote(Asc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (b.popularity - a.popularity)); setList(copy); }} as="button">Revenue(Desc)</Dropdown.Item>
+                <Dropdown.Item onClick={() => { let copy = [...list]; copy.sort((a, b) => (b.popularity - a.popularity)); setList(copy); }} as="button">Revenue(Asc)</Dropdown.Item>
               </DropdownButton>
             </DropdownButton>
             <div>Filter</div>
@@ -80,8 +71,8 @@ const Movies = () => {
             <Col lg={12}>
               <div className='collection-card-list'>{
                 keyword !== null ?
-                searchMovie.results && searchMovie.results.map((movie) => (<MoviesCollectionCard movie={movie} />)):
-                  popularMovies.results && popularMovies.results.map((movie) => (<MoviesCollectionCard movie={movie} />))
+                  searchMovie.results && searchMovie.results.map((movie) => (<MoviesCollectionCard movie={movie} />)) :
+                  list && list.map((movie) => (<MoviesCollectionCard movie={movie} />) )
               }
               </div>
               <div>
