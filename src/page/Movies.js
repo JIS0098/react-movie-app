@@ -6,12 +6,11 @@ import { ClipLoader } from "react-spinners";
 import { Container, Row, Col } from "react-bootstrap";
 import MoviesCollectionCard from "../components/MoviesCollectionCard";
 import "../css/movie.css";
-import Pagination from "../components/Pagination";
 import { useSearchParams } from "react-router-dom";
 import api from "../redux/api";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import InputRange from "react-input-range";
+import {Dropdown,DropdownButton,InputRange} from "react-bootstrap";
+
+
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -158,12 +157,12 @@ const Movies = () => {
               </DropdownButton>
             </DropdownButton>
             <div>
-              <InputRange
+              {/* <InputRange
                 maxValue={20}
                 minValue={0}
                 value={this.state.value}
                 onChange={(value) => this.setState({ value })}
-              />
+              /> */}
             </div>
           </div>
         </Col>
